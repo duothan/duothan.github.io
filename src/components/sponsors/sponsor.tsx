@@ -5,8 +5,6 @@ import {
 	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import localFont from "next/font/local";
