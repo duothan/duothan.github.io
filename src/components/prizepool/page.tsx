@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { getImagePath } from "@/lib/imagePath";
 import Autoplay from "embla-carousel-autoplay";
-import { motion } from "framer-motion";
+import { type Variants, motion } from "framer-motion";
 import localFont from "next/font/local";
 import Image from "next/image";
 import type React from "react";
@@ -68,13 +68,17 @@ const PrizeCard: React.FC<PrizeCardProps> = ({
 	};
 
 	// Set different card positions and animations based on variant
-	const cardVariants = {
+	const cardVariants: Variants = {
+		initial: {
+			y: 0,
+			zIndex: 10,
+		},
 		first: {
 			y: [0, -5, 0],
 			transition: {
 				duration: 2,
 				repeat: Number.POSITIVE_INFINITY,
-				ease: "easeInOut",
+				ease: [0.4, 0, 0.6, 1], // easeInOut as cubic-bezier
 			},
 			zIndex: 20,
 		},
@@ -83,7 +87,7 @@ const PrizeCard: React.FC<PrizeCardProps> = ({
 			transition: {
 				duration: 2.5,
 				repeat: Number.POSITIVE_INFINITY,
-				ease: "easeInOut",
+				ease: [0.4, 0, 0.6, 1], // easeInOut as cubic-bezier
 				delay: 0.3,
 			},
 			zIndex: 10,
@@ -93,7 +97,7 @@ const PrizeCard: React.FC<PrizeCardProps> = ({
 			transition: {
 				duration: 2.5,
 				repeat: Number.POSITIVE_INFINITY,
-				ease: "easeInOut",
+				ease: [0.4, 0, 0.6, 1], // easeInOut as cubic-bezier
 				delay: 0.6,
 			},
 			zIndex: 10,
