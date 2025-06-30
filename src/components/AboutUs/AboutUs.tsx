@@ -123,8 +123,9 @@ export default function AboutUs() {
 								IEEE STUDENT BRANCH OF NSBM
 							</p>
 							<p className="text-base md:text-lg text-white text-center w-full pt-3 px-5 md:px-20">
-								The IEEE Student Branch of NSBM Green University, established in 2015, unites passionate 
-								IEEE members from the Faculties of Computing and Engineering to foster innovation, collaboration, 
+								The IEEE Student Branch of NSBM Green University, established in
+								2015, unites passionate IEEE members from the Faculties of
+								Computing and Engineering to foster innovation, collaboration,
 								and professional growth.
 							</p>
 						</div>
