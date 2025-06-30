@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import {
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
@@ -109,6 +110,25 @@ const SponsorSection = ({
 	isMobile: boolean;
 }) => {
 	const hasMultipleSponsors = sponsors.length > 1;
+	const [api, setApi] = useState<CarouselApi>();
+	const [current, setCurrent] = useState(0);
+
+	// Update current index when carousel slides
+	useEffect(() => {
+		if (!api) return;
+
+		const onSelect = () => {
+			setCurrent(api.selectedScrollSnap());
+		};
+
+		api.on("select", onSelect);
+		// Call once to set initial slide
+		setCurrent(api.selectedScrollSnap());
+
+		return () => {
+			api.off("select", onSelect);
+		};
+	}, [api]);
 
 	return (
 		<div className="mb-8">
@@ -121,14 +141,15 @@ const SponsorSection = ({
 				{title}
 			</h3>
 			{isMobile && hasMultipleSponsors ? (
-				// Mobile carousel view for multiple sponsors
+				// Mobile carousel view for multiple sponsors with custom arrows and indicators
 				<div className="max-w-md mx-auto">
 					<Carousel
 						opts={{
 							align: "center",
 							loop: true,
 						}}
-						className="w-full"
+						className="w-full relative"
+						setApi={setApi}
 					>
 						<CarouselContent>
 							{sponsors.map((sponsor) => (
@@ -137,18 +158,157 @@ const SponsorSection = ({
 								</CarouselItem>
 							))}
 						</CarouselContent>
-						<CarouselPrevious className="left-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
-						<CarouselNext className="right-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+						
+						{/* Custom Navigation Controls */}
+						<div className="flex items-center justify-center mt-4 space-x-4">
+							<button
+								type="button"
+								className="text-[#e957dd] hover:text-[#e957dd]/80 transition-colors p-2"
+								onClick={() => api?.scrollPrev()}
+								aria-label="Previous sponsor"
+							>
+								<svg
+									width="32"
+									height="32"
+									className="w-6 h-6 sm:w-8 sm:h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+								>
+									<path
+										d="M15 18l-6-6 6-6"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</button>
+
+							{/* Pagination indicators */}
+							<div className="flex space-x-2 items-center justify-center">
+								{sponsors.map((_, index) => (
+									<button
+										type="button"
+										key={`indicator-${index}`}
+										onClick={() => api?.scrollTo(index)}
+										className={`w-8 sm:w-10 lg:w-12 h-[5px] rounded-[5px] transition-all duration-300 ${
+											current === index
+												? "bg-[#e957dd]"
+												: "bg-[#e957dd] opacity-30"
+										}`}
+										aria-label={`Go to sponsor ${index + 1}`}
+									/>
+								))}
+							</div>
+
+							<button
+								type="button"
+								className="text-[#e957dd] hover:text-[#e957dd]/80 transition-colors p-2"
+								onClick={() => api?.scrollNext()}
+								aria-label="Next sponsor"
+							>
+								<svg
+									width="32"
+									height="32"
+									className="w-6 h-6 sm:w-8 sm:h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+								>
+									<path
+										d="M9 18l6-6-6-6"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</button>
+						</div>
 					</Carousel>
 				</div>
 			) : hasMultipleSponsors ? (
-				// Desktop grid view for multiple sponsors
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:gap-6 max-w-2xl mx-auto">
-					{sponsors.map((sponsor) => (
-						<div key={`desktop-${sponsor.id}`}>
-							<SponsorCard img={sponsor.img} altText={sponsor.altText} />
+				// Desktop carousel view for multiple sponsors with custom arrows and indicators
+				<div className="max-w-2xl mx-auto">
+					<Carousel
+						opts={{
+							align: "center",
+							loop: true,
+						}}
+						className="w-full relative"
+						setApi={setApi}
+					>
+						<CarouselContent>
+							{sponsors.map((sponsor) => (
+								<CarouselItem key={`desktop-${sponsor.id}`} className="md:basis-1/2">
+									<SponsorCard img={sponsor.img} altText={sponsor.altText} />
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						
+						{/* Custom Arrow Navigation for Desktop */}
+						<button
+							type="button"
+							onClick={() => api?.scrollPrev()}
+							className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-[#e957dd] hover:text-[#e957dd]/80 transition-colors"
+							aria-label="Previous sponsor"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 36"
+								fill="none"
+							>
+								<path
+									d="M15 5L5 18L15 31"
+									stroke="currentColor"
+									strokeWidth="4"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
+						</button>
+
+						<button
+							type="button"
+							onClick={() => api?.scrollNext()}
+							className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-[#e957dd] hover:text-[#e957dd]/80 transition-colors"
+							aria-label="Next sponsor"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 36"
+								fill="none"
+							>
+								<path
+									d="M9 5L19 18L9 31"
+									stroke="currentColor"
+									strokeWidth="4"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								/>
+							</svg>
+						</button>
+						
+						{/* Pagination indicators for Desktop */}
+						<div className="flex justify-center mt-4 gap-2 items-center">
+							{sponsors.map((_, index) => (
+								<button
+									type="button"
+									key={`indicator-${index}`}
+									onClick={() => api?.scrollTo(index)}
+									className={`w-8 sm:w-10 lg:w-12 h-[5px] rounded-[5px] transition-all duration-300 ${
+										current === index
+											? "bg-[#e957dd]"
+											: "bg-[#e957dd] opacity-30"
+									}`}
+									aria-label={`Go to sponsor ${index + 1}`}
+								/>
+							))}
 						</div>
-					))}
+					</Carousel>
 				</div>
 			) : (
 				// Single sponsor centered view
