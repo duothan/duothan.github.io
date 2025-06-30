@@ -102,7 +102,7 @@ const SponsorSection = ({
 	title,
 	sponsors,
 	isMobile,
-	currentIndex,
+	// currentIndex,
 }: {
 	title: string;
 	sponsors: Sponsor[];
