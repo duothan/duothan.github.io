@@ -8,7 +8,7 @@ export default function Timeline() {
 			id: 1,
 			position: "left",
 			title: "Registration Opens",
-			description: "July 1st, 2025",
+			description: "July 2nd, 2025",
 		},
 		{
 			id: 2,
