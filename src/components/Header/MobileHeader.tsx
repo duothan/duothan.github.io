@@ -179,7 +179,7 @@ const MobileHeader = ({ disableScaling = false }: MobileHeaderProps = {}) => {
 						className="w-auto h-4 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(236,39,180,0.8)]"
 					/>
 					<span className="absolute inset-0 flex items-center justify-center text-cyan-400 text-[10px] tracking-widest transition-all duration-300 group-hover:text-pink-500">
-						{">> REGISTER NOW <<"}
+						{"IEEE NSBM"}
 					</span>
 				</button>
 			</div>
