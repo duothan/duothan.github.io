@@ -34,7 +34,7 @@ const contactData = [
 		image: getImagePath("/assets/ContactUS/Jayasanka.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/jayasanka-ariyaratne?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bvd6eSph0Q2C91JY4E6nTxQ%3D%3D",
-		phone: "+94123456789",
+		phone: "+94704821254",
 		email: "jayasankaariyaratne@ieee.org",
 	},
 	{
@@ -64,7 +64,7 @@ const contactData = [
 		image: getImagePath("/assets/ContactUS/Kumuditha.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/kumuditha-ranasinghe-078a23254?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9%2FS%2BWSl8RDGVswH4%2BP5RXA%3D%3D",
-		phone: "+94123456789",
+		phone: "+94702854637",
 		email: "kumuditharanasinghe@ieee.org",
 	},
 	{
@@ -74,7 +74,7 @@ const contactData = [
 		image: getImagePath("/assets/ContactUS/Ravindu.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/ravindu-rajapaksha-9b4415308?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BuDn5UM3GSo6zXuJdfa1GVQ%3D%3D",
-		phone: "+94123456789",
+		phone: "+94710795926",
 		email: "ravindurajapaksha@ieee.org",
 	},
 ];
