@@ -379,7 +379,7 @@ export default function Sponsor() {
 				{/* Bronze Partners - Desktop: Show both side by side, Mobile: Carousel with dynamic title */}
 				{isMobile ? (
 					<SponsorSection
-						title="BRONZE PARTNERS"
+						title="BRONZE PARTNER"
 						sponsors={BRONZE_PARTNERS}
 						isMobile={isMobile}
 					/>
@@ -413,7 +413,7 @@ export default function Sponsor() {
 										readyplayerone.className,
 									)}
 								>
-									ASSOCIATE SPONSOR
+									ASSOCIATE PARTNER
 								</h3>
 								<div className="flex justify-center">
 									<div className="w-full max-w-md">
