@@ -115,9 +115,9 @@ const SponsorSection = ({
 
 	// Dynamic title based on current slide for bronze partners
 	const getDynamicTitle = () => {
-		if (title === "BRONZE PARTNERS" && isMobile && hasMultipleSponsors) {
+		if (title === "BRONZE PARTNER" && isMobile && hasMultipleSponsors) {
 			// ogo is first (index 0), codearch is second (index 1)
-			return current === 1 ? "ASSOCIATE SPONSOR" : title;
+			return current === 1 ? "ASSOCIATE PARTNER" : title;
 		}
 		return title;
 	};
