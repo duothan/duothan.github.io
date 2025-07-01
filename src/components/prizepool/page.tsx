@@ -239,7 +239,7 @@ const MobileCarousel = () => {
 		},
 		{
 			place: "3rd Place",
-			amount: "LKR 30,000",
+			amount: "LKR 20,000",
 			imageUrl: getImagePath("/assets/PricePool/3rd_Place.jpg"),
 		},
 	];
