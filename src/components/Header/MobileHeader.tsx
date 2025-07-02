@@ -163,12 +163,17 @@ const MobileHeader = ({ disableScaling = false }: MobileHeaderProps = {}) => {
 				<button
 					type="button"
 					ref={buttonRef}
-					onClick={() => {
+					onClick={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
 						const registrationSection = document.getElementById("registration");
 						if (registrationSection) {
 							registrationSection.scrollIntoView({ behavior: "smooth" });
 						}
 					}}
+					onTouchStart={(e) => e.stopPropagation()}
+					onTouchMove={(e) => e.stopPropagation()}
+					onTouchEnd={(e) => e.stopPropagation()}
 					className="absolute top-12 left-0 w-full flex items-center justify-center text-cyan-400 text-xs font-mono tracking-widest transition-all duration-300 hover:text-pink-500 group cursor-pointer"
 				>
 					<Image

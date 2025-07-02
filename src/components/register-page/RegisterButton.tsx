@@ -39,21 +39,50 @@ function RegisterButton() {
 		// Add touch event handlers for mobile
 		const btnElement = btnRef.current;
 		if (btnElement) {
-			const handleTouchStart = () => setIsHovered(true);
-			const handleTouchEnd = () => {
+			const handleTouchStart = (e: TouchEvent) => {
+				// Prevent event from propagating to parent viewport
+				e.stopPropagation();
+				setIsHovered(true);
+			};
+
+			const handleTouchMove = (e: TouchEvent) => {
+				// Prevent swipe detection on the button
+				e.stopPropagation();
+			};
+
+			const handleTouchEnd = (e: TouchEvent) => {
+				// Prevent event from propagating to parent viewport
+				e.stopPropagation();
 				setIsHovered(false);
 				// Add a slight delay before removing hover effect
 				setTimeout(() => setIsHovered(false), 200);
 			};
 
-			btnElement.addEventListener("touchstart", handleTouchStart);
-			btnElement.addEventListener("touchend", handleTouchEnd);
+			btnElement.addEventListener(
+				"touchstart",
+				handleTouchStart as EventListener,
+			);
+			btnElement.addEventListener(
+				"touchmove",
+				handleTouchMove as EventListener,
+			);
+			btnElement.addEventListener("touchend", handleTouchEnd as EventListener);
 
 			// Cleanup
 			return () => {
 				window.removeEventListener("resize", checkMobile);
-				btnElement.removeEventListener("touchstart", handleTouchStart);
-				btnElement.removeEventListener("touchend", handleTouchEnd);
+				btnElement.removeEventListener(
+					"touchstart",
+					handleTouchStart as EventListener,
+				);
+				btnElement.removeEventListener(
+					"touchmove",
+					handleTouchMove as EventListener,
+				);
+				btnElement.removeEventListener(
+					"touchend",
+					handleTouchEnd as EventListener,
+				);
 			};
 		}
 
@@ -69,11 +98,16 @@ function RegisterButton() {
 				className="relative transform scale-70 xs:scale-80 sm:scale-90 md:scale-110"
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
+				onTouchStart={(e) => e.stopPropagation()}
+				onTouchMove={(e) => e.stopPropagation()}
+				onTouchEnd={(e) => e.stopPropagation()}
 			>
 				<button
 					type="button"
 					className="relative group"
-					onClick={() => {
+					onClick={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
 						window.location.href = "https://duothanplatform.nsbmieee.org";
 					}}
 				>

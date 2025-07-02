@@ -154,8 +154,23 @@ const Viewport: React.FC<ViewportProps> = ({
 	}, []);
 
 	// Handle touch events for mobile with refs to ensure consistent behavior
+	const touchStartTimeRef = useRef(0);
+
 	const handleTouchStartRef = useRef((e: TouchEvent) => {
 		touchStartY.current = e.touches[0].clientY;
+		touchStartTimeRef.current = Date.now();
+
+		// Check if the touch started on an interactive element
+		const target = e.target as HTMLElement;
+		if (
+			target.tagName === "BUTTON" ||
+			target.tagName === "A" ||
+			target.closest("button") ||
+			target.closest("a")
+		) {
+			// Skip viewport scrolling for interactive elements
+			return;
+		}
 	});
 
 	const handleTouchMoveRef = useRef((e: TouchEvent) => {
@@ -166,9 +181,11 @@ const Viewport: React.FC<ViewportProps> = ({
 		if (scrollingRef.current) return;
 
 		const touchDiff = touchStartY.current - touchEndY.current;
+		const touchDuration = Date.now() - touchStartTimeRef.current;
 
-		// At least 50px swipe distance to register as a swipe
-		if (Math.abs(touchDiff) < 50) return;
+		// Require at least 80px swipe distance and maximum 300ms duration to register as a swipe
+		// This will help prevent accidental viewport scrolling
+		if (Math.abs(touchDiff) < 80 || touchDuration > 300) return;
 
 		scrollingRef.current = true;
 
@@ -190,7 +207,7 @@ const Viewport: React.FC<ViewportProps> = ({
 		if (timeoutRef.current) clearTimeout(timeoutRef.current);
 		timeoutRef.current = setTimeout(() => {
 			scrollingRef.current = false;
-		}, 800);
+		}, 1000); // Increased timeout to reduce over-scrolling
 	});
 
 	// Update touch handlers when dependencies change
