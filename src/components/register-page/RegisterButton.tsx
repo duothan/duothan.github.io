@@ -70,7 +70,13 @@ function RegisterButton() {
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
-				<button type="button" className="relative group">
+				<button
+					type="button"
+					className="relative group"
+					onClick={() => {
+						window.location.href = "https://duothanplatform.nsbmieee.org";
+					}}
+				>
 					<div
 						className={`absolute inset-0 rounded bg-transparent transform skew-x-[-20deg] scale-x-110 scale-y-110 transition-all duration-300 ${isHovered ? "bg-cyan-400/10 shadow-[0_0_25px_rgba(0,255,247,0.6)]" : "shadow-[0_0_15px_rgba(0,255,247,0.3)]"}`}
 					/>

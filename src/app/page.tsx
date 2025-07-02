@@ -11,7 +11,7 @@ import DownTag from "@/components/down-tag/page";
 import Footer from "@/components/footer";
 import PastEvents from "@/components/pastevents/pastevents";
 import PrizePool from "@/components/prizepool/page";
-// import RegistrationBanner from "@/components/register-page/RegistrationBanner";
+import RegistrationBanner from "@/components/register-page/RegistrationBanner";
 import SideSkirts from "@/components/side-skirts/SideSkirts";
 import Sponsor from "@/components/sponsors/sponsor";
 import Timeline from "@/components/timeline/timeline";
@@ -29,7 +29,7 @@ export default function Home() {
 		{ name: "About Us", id: "about-us" },
 		{ name: "Sponsors", id: "sponsors" },
 		{ name: "Prizes", id: "prizes" },
-		// { name: "Registration", id: "registration" },
+		{ name: "Registration", id: "registration" },
 		{ name: "Past Events", id: "past-events" },
 		{ name: "Timeline", id: "timeline" },
 		{ name: "Contact", id: "contact" },
@@ -54,6 +54,26 @@ export default function Home() {
 	const isContactSection = activeSectionName === "Contact";
 	// Check if current section is Hero to hide UI elements
 	const isHeroSection = activeSectionName === "HERO";
+	// Check if current section is Registration to hide header and bottom tag on mobile
+	const isRegistrationSection = activeSectionName === "Registration";
+	// State to track if the screen is in mobile view
+	const [isMobileView, setIsMobileView] = useState(false);
+
+	// Effect to detect mobile view
+	useEffect(() => {
+		const checkMobileView = () => {
+			setIsMobileView(window.innerWidth < 768); // Common breakpoint for mobile devices
+		};
+
+		// Initial check
+		checkMobileView();
+
+		// Add event listener for resize
+		window.addEventListener("resize", checkMobileView);
+
+		// Cleanup
+		return () => window.removeEventListener("resize", checkMobileView);
+	}, []);
 
 	if (!mounted) {
 		return null; // Avoid hydration issues
@@ -63,19 +83,27 @@ export default function Home() {
 		<div className="relative no-scrollbar">
 			{/* Fixed elements that stay on screen during scrolling */}
 
-			{!isContactSection && !isHeroSection && (
-				<SideSkirts leftLabel="Days" rightLabel="Hrs" targetDate={targetDate} />
-			)}
-			{!isContactSection && !isHeroSection && (
-				<DownTag text={activeSectionName} />
-			)}
+			{!isContactSection &&
+				!isHeroSection &&
+				!(isMobileView && isRegistrationSection) && (
+					<SideSkirts
+						leftLabel="Days"
+						rightLabel="Hrs"
+						targetDate={targetDate}
+					/>
+				)}
+			{!isContactSection &&
+				!isHeroSection &&
+				!(isMobileView && isRegistrationSection) && (
+					<DownTag text={activeSectionName} />
+				)}
 			<HudBackground />
 
 			{/* Debug panel for viewport scaling - hidden by default, press 'D' to show */}
 			{/* {process.env.NODE_ENV !== "production" && (
 				<ViewportDebugPanel hidden={true} />
 			)} */}
-			{!isHeroSection && (
+			{!isHeroSection && !(isMobileView && isRegistrationSection) && (
 				<div className="fixed top-0 left-0 right-0 z-50">
 					<Header />
 				</div>
@@ -112,22 +140,22 @@ export default function Home() {
 				</ViewportSection>
 
 				{/* Registration Section */}
-				{/* <ViewportSection id={sections[5].id}>
+				<ViewportSection id={sections[5].id}>
 					<RegistrationBanner />
-				</ViewportSection> */}
+				</ViewportSection>
 
 				{/* Past Events Section */}
-				<ViewportSection id={sections[5].id}>
+				<ViewportSection id={sections[6].id}>
 					<PastEvents />
 				</ViewportSection>
 
 				{/* Timeline Section */}
-				<ViewportSection id={sections[6].id}>
+				<ViewportSection id={sections[7].id}>
 					<Timeline />
 				</ViewportSection>
 
 				{/* Contact Section */}
-				<ViewportSection id={sections[7].id} className="">
+				<ViewportSection id={sections[8].id} className="">
 					<Contactus />
 				</ViewportSection>
 			</Viewport>
