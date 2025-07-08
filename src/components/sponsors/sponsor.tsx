@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import localFont from "next/font/local";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Import custom font
 const readyplayerone = localFont({
