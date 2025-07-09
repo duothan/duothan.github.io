@@ -210,7 +210,7 @@ export default function Sponsor() {
 	const sponsorCategories = useMemo(
 		() => [
 			{ title: "SILVER PARTNER", sponsors: SILVER_PARTNERS },
-			{ title: "BRONZE PARTNERS", sponsors: BRONZE_PARTNERS },
+			{ title: "BRONZE PARTNER", sponsors: BRONZE_PARTNERS },
 			{ title: "ASSOCIATE PARTNER", sponsors: ASSOCIATE_PARTNERS },
 		],
 		[],
@@ -464,7 +464,7 @@ export default function Sponsor() {
 									readyplayerone.className,
 								)}
 							>
-								BRONZE PARTNERS
+								BRONZE PARTNER
 							</h3>
 							<div className="flex justify-center">
 								{BRONZE_PARTNERS.map((sponsor) => (
