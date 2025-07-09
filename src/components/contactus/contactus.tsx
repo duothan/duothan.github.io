@@ -41,7 +41,7 @@ const contactData = [
 		id: 2,
 		name: "Pasandi Samarasinghe",
 		title: "Secretary - IEEE Student Branch of NSBM",
-		image: getImagePath("/assets/ContactUS/Pasandi.PNG"),
+		image: getImagePath("/assets/ContactUS/Pasandi.png"),
 		linkedin:
 			"https://www.linkedin.com/in/pasandi-samarasinghe?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bvd6eSph0Q2C91JY4E6nTxQ%3D%3D",
 		phone: "+94711476371",
