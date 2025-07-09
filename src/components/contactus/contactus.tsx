@@ -38,6 +38,16 @@ const contactData = [
 		email: "jayasankaariyaratne@ieee.org",
 	},
 	{
+		id: 2,
+		name: "Pasandi Samarasinghe",
+		title: "Secretary - IEEE Student Branch of NSBM",
+		image: getImagePath("/assets/ContactUS/Pasandi.PNG"),
+		linkedin:
+			"https://www.linkedin.com/in/pasandi-samarasinghe?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bvd6eSph0Q2C91JY4E6nTxQ%3D%3D",
+		phone: "+94711476371",
+		email: "pasandisamarasinghe@ieee.org",
+	},
+	{
 		id: 3,
 		name: "Sithum Sankajith",
 		title: "Treasurer - IEEE Student Branch of NSBM",
@@ -50,11 +60,11 @@ const contactData = [
 	{
 		id: 4,
 		name: "Dasun Sri Nethmal",
-		title: "Event Coordinator - Duothan 5.0",
+		title: "Advisor - Duothan 5.0",
 		image: getImagePath("/assets/ContactUS/dasun.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/sithum-sankajith?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Buw%2FoNUZzRGm%2BytPRPtf3tQ%3D%3D",
-		phone: "+94775524461",
+		phone: "+94741530326",
 		email: "sithumsankajith@ieee.org",
 	},
 	{
@@ -64,9 +74,11 @@ const contactData = [
 		image: getImagePath("/assets/ContactUS/Kumuditha.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/kumuditha-ranasinghe-078a23254?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B9%2FS%2BWSl8RDGVswH4%2BP5RXA%3D%3D",
-		phone: "+94702854637",
+		phone: "+94123456789",
 		email: "kumuditharanasinghe@ieee.org",
 	},
+	/*
+	// Uncomment this section if you want to add Ravindu Rajapaksha's contact details
 	{
 		id: 6,
 		name: "Ravindu Rajapaksha",
@@ -74,9 +86,10 @@ const contactData = [
 		image: getImagePath("/assets/ContactUS/Ravindu.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/ravindu-rajapaksha-9b4415308?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BuDn5UM3GSo6zXuJdfa1GVQ%3D%3D",
-		phone: "+94710795926",
+		phone: "+94123456789",
 		email: "ravindurajapaksha@ieee.org",
 	},
+	*/
 ];
 
 const ContactUs: React.FC = () => {
