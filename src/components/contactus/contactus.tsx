@@ -60,7 +60,7 @@ const contactData = [
 	{
 		id: 4,
 		name: "Dasun Sri Nethmal",
-		title: "Advisor - Duothan 5.0",
+		title: "Event Coordinator - Duothan 5.0",
 		image: getImagePath("/assets/ContactUS/dasun.PNG"),
 		linkedin:
 			"https://www.linkedin.com/in/sithum-sankajith?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Buw%2FoNUZzRGm%2BytPRPtf3tQ%3D%3D",
