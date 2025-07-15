@@ -58,6 +58,12 @@ const ASSOCIATE_PARTNERS: Sponsor[] = [
 		img: "/assets/sponsor/logo-trans.png",
 		altText: "codearch",
 	},
+
+	{
+		id: 11,
+		img: "/assets/sponsor/quantumsynclab.png",
+		altText: "Techno",
+	},
 ];
 
 const MEDIA_PARTNERS: Sponsor[] = [
@@ -501,15 +507,34 @@ export default function Sponsor() {
 							>
 								ASSOCIATE PARTNER
 							</h3>
-							<div className="flex justify-center">
-								{ASSOCIATE_PARTNERS.map((sponsor) => (
-									<div
-										key={`associate-${sponsor.id}`}
-										className="w-full max-w-md"
-									>
-										<SponsorCard img={sponsor.img} altText={sponsor.altText} />
-									</div>
-								))}
+							<div className="max-w-md mx-auto">
+								<Carousel
+									opts={{
+										align: "center",
+										loop: true,
+									}}
+									plugins={[
+										Autoplay({
+											delay: 3000,
+											stopOnMouseEnter: true,
+											stopOnInteraction: false,
+										}),
+									]}
+									className="w-full"
+								>
+									<CarouselContent>
+										{ASSOCIATE_PARTNERS.map((sponsor) => (
+											<CarouselItem key={`associate-${sponsor.id}`}>
+												<SponsorCard
+													img={sponsor.img}
+													altText={sponsor.altText}
+												/>
+											</CarouselItem>
+										))}
+									</CarouselContent>
+									<CarouselPrevious className="left-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+									<CarouselNext className="right-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+								</Carousel>
 							</div>
 						</div>
 					</div>
@@ -609,7 +634,7 @@ export default function Sponsor() {
 										readyplayerone.className,
 									)}
 								>
-									MEDIA AND GIFT PARTNER
+									MEDIA & GIFT PARTNERS
 								</h3>
 								<div className="max-w-md mx-auto">
 									<Carousel
