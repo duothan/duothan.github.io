@@ -634,7 +634,7 @@ export default function Sponsor() {
 										readyplayerone.className,
 									)}
 								>
-									MEDIA & GIFT PARTNERS
+									MEDIA AND GIFT PARTNERS
 								</h3>
 								<div className="max-w-md mx-auto">
 									<Carousel
