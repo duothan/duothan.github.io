@@ -68,6 +68,14 @@ const MEDIA_PARTNERS: Sponsor[] = [
 	},
 ];
 
+const GIFT_PARTNERS: Sponsor[] = [
+	{
+		id: 10,
+		img: "/assets/sponsor/gift.png",
+		altText: "Gift Partner",
+	},
+];
+
 const KNOWLEDGE_PARTNERS: Sponsor[] = [
 	{
 		id: 6,
@@ -120,7 +128,9 @@ const SponsorCard = ({
 
 				{/* Sponsor logo */}
 				<div
-					className={`relative z-10 ${altText === "codearch" ? "bg-[#1a1a1a]" : "bg-white"} flex items-center justify-center w-[125px] h-[60px]`}
+					className={`relative z-10 ${
+						altText === "codearch" ? "bg-[#1a1a1a]" : "bg-white"
+					} flex items-center justify-center w-[125px] h-[60px]`}
 				>
 					<Image
 						src={img}
@@ -225,6 +235,7 @@ export default function Sponsor() {
 	const thirdRowCategories = useMemo(
 		() => [
 			{ title: "MEDIA PARTNER", sponsors: MEDIA_PARTNERS },
+			{ title: "GIFT PARTNER", sponsors: GIFT_PARTNERS },
 			{ title: "KNOWLEDGE PARTNER", sponsors: KNOWLEDGE_PARTNERS },
 			{ title: "BEVERAGE PARTNER", sponsors: BEVERAGE_PARTNERS },
 		],
@@ -589,24 +600,48 @@ export default function Sponsor() {
 				) : (
 					// Desktop view - All three categories in one row
 					<div className="grid grid-cols-3 gap-4 mb-8">
-						{/* Media Partner */}
-						<div>
-							<h3
-								className={cn(
-									"text-xl md:text-2xl text-center text-[#e957dd]",
-									readyplayerone.className,
-								)}
-							>
-								MEDIA PARTNER
-							</h3>
-							<div className="flex justify-center">
-								{MEDIA_PARTNERS.map((sponsor) => (
-									<div key={`media-${sponsor.id}`} className="w-full max-w-md">
-										<SponsorCard img={sponsor.img} altText={sponsor.altText} />
-									</div>
-								))}
+						{/* MEDIA & GIFT Partners Carousel (Desktop only) */}
+						{!isMobile && (
+							<div className="col-span-1">
+								<h3
+									className={cn(
+										"text-xl md:text-2xl text-center text-[#e957dd]",
+										readyplayerone.className,
+									)}
+								>
+									MEDIA & GIFT PARTNERS
+								</h3>
+								<div className="max-w-md mx-auto">
+									<Carousel
+										opts={{
+											align: "center",
+											loop: true,
+										}}
+										plugins={[
+											Autoplay({
+												delay: 3000,
+												stopOnMouseEnter: true,
+												stopOnInteraction: false,
+											}),
+										]}
+										className="w-full"
+									>
+										<CarouselContent>
+											{[...MEDIA_PARTNERS, ...GIFT_PARTNERS].map((sponsor) => (
+												<CarouselItem key={`media-gift-${sponsor.id}`}>
+													<SponsorCard
+														img={sponsor.img}
+														altText={sponsor.altText}
+													/>
+												</CarouselItem>
+											))}
+										</CarouselContent>
+										<CarouselPrevious className="left-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+										<CarouselNext className="right-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+									</Carousel>
+								</div>
 							</div>
-						</div>
+						)}
 
 						{/* Knowledge Partner */}
 						<div>
