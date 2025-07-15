@@ -74,6 +74,11 @@ const KNOWLEDGE_PARTNERS: Sponsor[] = [
 		img: "/assets/sponsor/ifs.png",
 		altText: "IFS",
 	},
+	{
+		id: 9,
+		img: "/assets/sponsor/virtusalogo.png",
+		altText: "VIRTUSA",
+	},
 ];
 
 const BEVERAGE_PARTNERS: Sponsor[] = [
@@ -613,15 +618,34 @@ export default function Sponsor() {
 							>
 								KNOWLEDGE PARTNER
 							</h3>
-							<div className="flex justify-center">
-								{KNOWLEDGE_PARTNERS.map((sponsor) => (
-									<div
-										key={`knowledge-${sponsor.id}`}
-										className="w-full max-w-md"
-									>
-										<SponsorCard img={sponsor.img} altText={sponsor.altText} />
-									</div>
-								))}
+							<div className="max-w-md mx-auto">
+								<Carousel
+									opts={{
+										align: "center",
+										loop: true,
+									}}
+									plugins={[
+										Autoplay({
+											delay: 3000,
+											stopOnMouseEnter: true,
+											stopOnInteraction: false,
+										}),
+									]}
+									className="w-full"
+								>
+									<CarouselContent>
+										{KNOWLEDGE_PARTNERS.map((sponsor) => (
+											<CarouselItem key={`knowledge-${sponsor.id}`}>
+												<SponsorCard
+													img={sponsor.img}
+													altText={sponsor.altText}
+												/>
+											</CarouselItem>
+										))}
+									</CarouselContent>
+									<CarouselPrevious className="left-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+									<CarouselNext className="right-2 bg-[#e957dd] hover:bg-[#e957dd]/80 border-[#e957dd] text-white" />
+								</Carousel>
 							</div>
 						</div>
 
